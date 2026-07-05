@@ -5,11 +5,11 @@ from typing import Optional
 old_length = len(os.environ)
 load_dotenv()
 new_length = len(os.environ)
-if new_length - old_length == 2:
-    print("加载成功")
-else:
-    print("加载失败")
-    raise
+# if new_length - old_length == 2:
+#     print("加载成功")
+# else:
+#     print("加载失败")
+#     raise
 
 # 配置API
 DEEPSEEK_BASE_URL = "https://api.deepseek.com"
