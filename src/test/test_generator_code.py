@@ -1,3 +1,11 @@
+import sys
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+# 确保项目根目录在 sys.path 中
+sys.path.append(os.environ["PWD"])
+
 # 生成器测试
 def get_numbers():
     return [1, 2, 3, 4, 5, 6, 7, 8, 9]

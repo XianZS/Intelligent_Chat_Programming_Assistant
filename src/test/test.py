@@ -1,10 +1,10 @@
+import sys
 import os
 from dotenv import load_dotenv
 
-print(len(os.environ))
-
-# 会自动查找当前目录的env文件
 load_dotenv()
+# 确保项目根目录在 sys.path 中
+sys.path.append(os.environ["PWD"])
 
 print(len(os.environ))
 
