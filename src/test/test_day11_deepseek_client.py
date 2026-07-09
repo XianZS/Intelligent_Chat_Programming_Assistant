@@ -20,9 +20,10 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
-# 确保项目根目录在 sys.path 中
 sys.path.append(os.environ["PWD"])
 from unittest.mock import patch, MagicMock
+
+# 确保项目根目录在 sys.path 中
 
 
 from src.deepseek_client import chat_stream

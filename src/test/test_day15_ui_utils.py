@@ -25,6 +25,7 @@ def test_css_contains_critical_rules():
 
     # inject_custom_css 调用 st.markdown，这里我们验证 CSS 字符串内容
     import inspect
+
     source = inspect.getsource(inject_custom_css)
 
     # 验证所有关键 CSS 规则都在源码中

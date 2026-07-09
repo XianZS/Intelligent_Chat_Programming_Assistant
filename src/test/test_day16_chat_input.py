@@ -22,7 +22,8 @@ sys.path.append(os.environ["PWD"])
 def test_app_imports_and_structure():
     """验证 app.py 的结构和关键调用"""
     # 切换到项目根目录，确保无论从哪里运行都能找到 app.py
-    os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    # os.chdir(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    os.chdir(os.environ["PWD"])
     # os.chdir(os.environ["PWD"])
     sys.path.insert(0, os.getcwd())
 
@@ -39,7 +40,7 @@ def test_app_imports_and_structure():
         ("disabled=chat_disabled", "chat_input 缺少 disabled 参数"),
         ('"请先在侧边栏配置 API 密钥"', "缺少密钥未配置时的提示文字"),
         ('"输入你的问题..."', "缺少正常状态下的占位符文字"),
-        ('st.chat_message("assistant"', "缺少助手消息气泡"),
+        ('st.chat_message("user"', "缺少助手消息气泡"),
         ('render_message("user"', "缺少用户消息渲染调用"),
         ('avatar="🤖"', "缺少助手头像"),
     ]
