@@ -100,13 +100,13 @@ def test_html_strings_complete():
 
     # Day 18: render_message 的 HTML 样式
     msg_source = inspect.getsource(render_message)
-    assert "color: #888" in msg_source, "思维链文字颜色缺失"
-    assert "font-size: 0.9em" in msg_source, "思维链文字大小缺失"
-    assert "line-height: 1.6" in msg_source, "思维链行间距缺失"
+    assert "color:#888" in msg_source, "思维链文字颜色缺失"
+    assert "font-size:0.9em" in msg_source, "思维链文字大小缺失"
+    assert "line-height:1.6" in msg_source, "思维链行间距缺失"
 
     # Day 19: render_welcome 的样式
     welcome_source = inspect.getsource(render_welcome)
-    assert "text-align: center" in welcome_source, "标题未居中"
+    assert "text-align:center" in welcome_source, "标题未居中"
     assert "font-size: 2.5em" in welcome_source, "标题字号缺失"
     assert "border: 1px solid #333" in welcome_source, "卡片边框样式缺失"
 

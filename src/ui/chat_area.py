@@ -1,5 +1,6 @@
 import streamlit as st
 from typing import Optional
+from ..chat_manager import get_all_message
 
 
 def render_message(
@@ -22,15 +23,21 @@ def render_message(
 
 
 def render_all_message():
-    pass
+    # 渲染全部的历史消息
+    message = get_all_message()
+    for msg in message:  # type:ignore
+        role = msg.get("role", "user")
+        content = msg.get("content", "")
+        reasoning = msg.get("reasoning_content")
+        render_message(role, content, reasoning)
 
 
 def render_welcome():
     # 渲染欢迎界面
     st.markdown(
         """
-            <div>
-                <h1 style='text-align:center;padding:40px 20px;'>
+            <div style='text-align:center;padding:40px 20px;'>
+                <h1 style="font-size: 2.5em;margin-bottom:10px;">
                     🤖 DeepSeek AI 聊天助手
                 </h1>
                 <p style='color=#888,font-size:1.1em;margin-bottom:30px'>

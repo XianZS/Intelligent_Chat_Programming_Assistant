@@ -1,7 +1,10 @@
 # streamlit 主程序入口 app.py
 import streamlit as st
 from src.ui.utils import inject_custom_css
-from src.config import get_api_key, validate_config
+from src.config import get_api_key, set_api_key, validate_config
+from src.ui.chat_area import render_all_message, render_welcome
+from src.chat_manager import init_message, get_message_count
+from src.ui.sidebar import render as render_sidebar
 
 st.set_page_config(
     page_title="DeepSeek AI 助手 🤖",
@@ -10,22 +13,16 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# 注入自定义 css 样式
-inject_custom_css()
 
-# 接收值 >>> (状态，状态描述)
-valid, status_msg = validate_config()
-# 设置聊天框是否禁用
-chat_disabled = not valid
+def main():
+    init_message()
+    if get_message_count() == 0:
+        render_welcome()
+    else:
+        render_all_message()
+    settings = render_sidebar()
+    api_key = settings["api_key"] or get_api_key()
 
-if prompt := st.chat_input(
-    "输入你的问题..." if not chat_disabled else "请先在侧边栏配置 API 密钥",
-    disabled=chat_disabled,
-):
-    # 接收用户输入
-    with st.chat_message("user", avatar="💻"):
-        st.markdown(prompt)
-if valid:
-    st.sidebar.success(status_msg)
-else:
-    st.sidebar.warning(status_msg)
+
+if __name__ == "__main__":
+    main()
