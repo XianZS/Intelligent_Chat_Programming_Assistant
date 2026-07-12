@@ -32,7 +32,7 @@ def test_render_message_user_avatar():
     from src.ui.chat_area import render_message
 
     source = inspect.getsource(render_message)
-    assert '"🧑‍💻"' in source or "'🧑‍💻'" in source, "用户消息缺少 🧑‍💻 头像"
+    assert '"👨‍💻"' in source or "'👨‍💻'" in source, "用户消息缺少 👨‍💻 头像"
     assert '"🤖"' in source or "'🤖'" in source, "助手消息缺少 🤖 头像"
 
 
@@ -45,7 +45,7 @@ def test_render_message_has_expander():
     assert "st.expander" in source, "缺少 st.expander（思维链折叠面板）"
     assert "🧠 查看思考过程" in source, "折叠面板标题不正确"
     assert "reasoning_content" in source, "未检查 reasoning_content 参数"
-    assert "role == \"assistant\"" in source or "role == 'assistant'" in source, (
+    assert 'role == "assistant"' in source or "role == 'assistant'" in source, (
         "未限制仅 assistant 显示思维链面板"
     )
 
@@ -59,7 +59,7 @@ def test_render_welcome_structure():
 
     # 标题检查
     assert "DeepSeek AI 聊天助手" in source, "欢迎页缺少标题"
-    assert "流式对话与思维链推理" in source, "欢迎页缺少副标题"
+    assert "流式对话与思维链路推理" in source, "欢迎页缺少副标题"
 
     # 建议卡片检查
     assert "st.columns(3)" in source, "应为 3 列布局"
@@ -68,8 +68,8 @@ def test_render_welcome_structure():
     assert "头脑风暴" in source, "缺少建议卡片 3"
 
     # 卡片样式检查
-    assert "cursor: pointer" in source, "建议卡片缺少 pointer 光标"
-    assert "border-radius: 10px" in source, "建议卡片缺少圆角"
+    assert "cursor:pointer" in source, "建议卡片缺少 pointer 光标"
+    assert "border-radius:10px" in source, "建议卡片缺少圆角"
 
 
 def test_render_all_message_import():
@@ -81,6 +81,7 @@ def test_render_all_message_import():
 
     # 检查从 chat_manager 导入
     import src.ui.chat_area as ca
+
     chat_area_source = inspect.getsource(ca)
     assert "from ..chat_manager import get_all_message" in chat_area_source, (
         "缺少从 chat_manager 导入 get_all_message"
